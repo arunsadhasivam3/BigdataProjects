@@ -1,0 +1,5 @@
+hi
+hi how are you
+hadoop
+hi how is hadoop
+hadoop wordcount example
