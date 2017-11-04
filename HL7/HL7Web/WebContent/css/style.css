@@ -1,0 +1,50 @@
+body{
+	background:#ffffff;
+}
+
+.leftpanel{
+	border: 0px solid gray;
+	background: #eeeeee;
+}
+.hl7table{
+        border-collapse:collapse;
+}
+.tdData{
+	border-collapse:collapse;
+}
+
+.trHeader{
+	background:#990000;
+	border-collapse:collapse;
+	color:#ffffff;
+}
+
+.mainHeader{ 
+	width: 100%;
+	height:100%;
+	height:550px !important;
+}
+
+.tdHeader{
+	height:39px;
+	border: 1px solid black;
+	text-align: center;
+	
+}
+.header{
+	width:100%;
+	background:#eeeeee;
+	#background-image: url("/HL7Web/images/hl7.png");
+	background-repeat: repeat-x;
+}
+.leftPanelHeader {
+	border:0px;
+	display: inline-block;
+	float:left;
+	width: 100%
+}
+.warning{
+	background-image: url("/HL7Web/images/warning.png");
+	background-repeat: no-repeat;
+	display: inline;
+}

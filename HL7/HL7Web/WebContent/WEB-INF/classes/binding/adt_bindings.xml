@@ -1,0 +1,151 @@
+<binding>
+	<mapping name="Mainroot" class="com.hl7.domain.Mainroot">
+		<structure field="clientInformation" />
+		<structure field="messageHeader" />
+		<structure field="demographicEntity" />
+		<structure field="in" />
+		<structure field="diagnosis" />
+	</mapping>
+
+	<mapping name="ClientInformation" class="com.hl7.domain.ClientInformation">
+		<value name="Title" field="title" />
+		<value name="Vendor" field="vendor" />
+		<value name="Description" field="description" />
+		<value name="DatabaseName" field="databaseName" />
+		<value name="DatabaseId" field="databaseId" />
+	</mapping>
+
+	<mapping name="MessageHeader" class="com.hl7.domain.MessageHeader">
+		<value name="ClientId" field="clientId" />
+		<value name="SendingApplication" field="sendingApplication" />
+		<value name="SendingFacility" field="sendingFacility" />
+		<value name="ReceivingApplication" field="receivingApplication" />
+		<value name="ReceivingFacility" field="receivingFacility" />
+		<structure field="messageType" />
+		<value name="MessageControlId" field="messageControlId" />
+		<value name="ProcessingId" field="processingId" />
+		<value name="VersionId" field="versionId" />
+		<value name="DateTimeofMessage" field="dateTimeofMessage" />
+		<value name="PmsAccountType" field="pmsAccountType" />
+		<value name="InterfaceType" field="interfaceType" />
+		<value name="Direction" field="direction" />
+	</mapping>
+
+	<!-- mapping type-name only for abstract type -->
+	<mapping name="MessageType" class="com.hl7.domain.MessageType">
+		<value name="Message" field="message" />
+		<value name="SubMessage" field="subMessage" />
+	</mapping>
+
+	<!-- mapping name denotes xml tag name it sould match exaclty with xml tag -->
+	<!-- field - denote na me in java instance name not class name -->
+	<!-- use <structure map-as> to map class extends base abstract class like 
+		name -->
+	<!-- i.e PersonName is a type of Name PersonName(map-as) TYPE OF relationship -->
+	<!-- use <structure field> to show has a relationship -->
+	<!-- i.e <structure Map-as> to inheritance (IS-A) and <structure field> 
+		to use HAS-A relationship -->
+
+	<!-- 2. Deomographic Entiy -->
+	<mapping name="DemographicEntity" class="com.hl7.domain.entity.DemographicEntity">
+		<structure field="patient" />
+		<structure field="provider" />
+	</mapping>
+
+
+	<!-- Mapping is mapping betwenn xml tag and class name <Patient> to Patient 
+		class -->
+	<!-- field means instance variable name in java -->
+	<mapping name="Patient" class="com.hl7.domain.entity.Patient">
+		<structure field="person" />
+		<structure field="account" />
+		<value name="AccountReceivableTypeId" field="accountReceivableTypeId" />
+		<value name="PreferredCommunication" field="preferredCommunication" />
+		<value name="PreferredLanguage" field="preferredLanguage" />
+		<value name="MaritalStatus" field="maritalStatus" />
+		<value name="EthnicityCode" field="ethnicityCode" />
+		<value name="PatientClass" field="patientClass" />
+	</mapping>
+
+
+
+	<mapping name="Person" class="com.hl7.domain.entity.Person">
+		<structure map-as="aperson" />
+		<value name="DateOfBirth" field="dateOfBirth" usage="optional" />
+		<value name="Gender" field="gender" usage="optional" />
+		<structure field="personAddress" usage="optional" />
+		<structure field="personPhoneNumber" usage="optional" />
+	</mapping>
+
+	<mapping type-name="aperson" class="com.hl7.domain.entity.AbstractPerson"
+		abstract="true">
+		<value name="PersonTypeId" field="personTypeId" />
+		<structure field="personName" />
+	</mapping>
+
+	<mapping name="PersonName" class="com.hl7.domain.entity.PersonName">
+		<structure map-as="name" />
+		<value name="MiddleName" field="middleName" usage="optional" />
+	</mapping>
+
+	<mapping type-name="name" class="com.hl7.domain.entity.types.Name"
+		abstract="true">
+		<value name="LastName" field="lastName" />
+		<value name="FirstName" field="firstName" />
+	</mapping>
+
+	<mapping name="PersonAddress" class="com.hl7.domain.entity.PersonAddress">
+		<value name="StreetAddress1" field="streetAddress1" />
+		<value name="StreetAddress2" field="streetAddress2" />
+		<value name="City" field="city" />
+		<value name="State" field="state" />
+		<value name="PostalCode" field="postalCode" />
+	</mapping>
+	<mapping name="PersonPhoneNumber" class="com.hl7.domain.entity.PersonPhoneNumber">
+		<value name="NumberTypeId" field="numberTypeId" />
+		<value name="Number" field="number" />
+	</mapping>
+
+	<mapping name="Account" class="com.hl7.domain.entity.Account">
+		<value name="AccountNumber" field="accountNumber" />
+	</mapping>
+
+	<mapping name="Provider" class="com.hl7.domain.entity.Provider">
+		<structure field="providerAccount" />
+		<structure field="person" />
+
+	</mapping>
+
+	<mapping name="ProviderAccount" class="com.hl7.domain.entity.ProviderAccount">
+		<value name="ProviderCode" field="providerCode" />
+	</mapping>
+
+	<!-- 3. Insurance -->
+	<mapping name="IN" class="com.hl7.domain.insurance.IN">
+		<structure field="insurance" />
+	</mapping>
+
+	<mapping name="Insurance" class="com.hl7.domain.insurance.Insurance">
+		<value name="SetId" field="setId" />
+		<value name="InsurancePolicyId" field="insurancePolicyId" />
+		<value name="InsuranceCompanyCode" field="insuranceCompanyCode" />
+		<value name="InsuranceCompanyName" field="insuranceCompanyName" />
+		<value name="InsuranceCompanyAddress" field="insuranceCompanyAddress" />
+		<value name="PlanType" field="planType" />
+		<structure field="person" />
+		<value name="RelationshiptoPatient" field="relationshiptoPatient" />
+		<value name="DateofBirth" field="dateOfBirth" />
+		<value name="PolicyNumber" field="policyNumber" />
+		<value name="Sex" field="sex" />
+	</mapping>
+
+	<!-- 4. Diagnosis -->
+	<mapping name="Diagnosis" class="com.hl7.domain.diagnosis.Diagnosis">
+		<value name="SetID" field="setId" />
+		<value name="DiognosisCodeMethod" field="diognosisCodeMethod" />
+		<value name="DiognosisCode" field="diognosisCode" />
+		<value name="DiognosisDescription" field="diognosisDescription" />
+	</mapping>
+</binding>
+
+
